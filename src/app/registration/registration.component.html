@@ -1,0 +1,67 @@
+<div class="row registration-box">
+    <div class="card registration1" [@slideInOut]="registration1">
+        <div class="card-body">
+            <div>
+                <span class="card-title" style="font-size: 22px; font-weight: bold;">Account Details</span>
+                <span><a [routerLink]="['/login']" routerLinkActive="router-link-active"  style="float: right; font-size: 12px;">Sign In</a></span>
+            </div>
+            <form [formGroup]="userform">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Full Name</span>
+                </div>
+                <input type="text" class="form-control" formControlName="fullname" placeholder="John Smith" aria-label="Username" aria-describedby="basic-addon1">
+                <span class="text-danger" *ngIf="userform.get('fullname')?.errors && userform.get('fullname')?.touched">Please enter your valid name</span>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Email Address</span>
+                </div>
+                <input type="text" class="form-control" formControlName="email" placeholder="example@domain.com" aria-label="email id" aria-describedby="basic-addon1">
+                <span class="text-danger" *ngIf="userform.get('email')?.errors && userform.get('email')?.touched">Please enter your valid email id</span>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">Password</span>
+                </div>
+                <input type="password" class="form-control" formControlName="password" placeholder="*********" aria-label="password" aria-describedby="basic-addon1">
+                <span class="text-danger" *ngIf="userform.get('password')?.errors && userform.get('password')?.touched">Please enter a valid password</span>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">State</span>
+                </div>
+                <select class="form-control" formControlName="state">
+                  <option value="">Select</option>
+                  <option value="MA">MA</option>
+                </select>
+                <span class="text-danger" *ngIf="userform.get('state')?.errors && userform.get('state')?.touched">Please enter your state name</span>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">District</span>
+                </div>
+                <select class="form-control" formControlName="district">
+                  <option value="">Select</option>
+                  <option *ngFor="let district of districts" [value]="district['District Code']">{{district['District Name']}}</option>
+                </select>
+                <span class="text-danger" *ngIf="userform.get('district')?.errors && userform.get('district')?.touched">Please enter your district name</span>
+              </div>
+              <div style="float: right;">
+                <a (click)="addChild();" class="card-link"><i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Next</a>
+              </div>
+            </form>
+        </div>
+    </div>
+    <div class="card registration2" [@slideInOut]="registration2">
+        <div class="card-body">
+          <div>
+            <span class="card-title" style="font-size: 22px; font-weight: bold;">Child Details</span>
+            <!-- <span><a [routerLink]="['/login']" routerLinkActive="router-link-active"  style="float: right; font-size: 12px;">Sign In</a></span> -->
+          </div>
+          <app-children [parentinfo]="parnetinfo"></app-children>
+          <a (click)="toggleShowDiv('registration1'); toggleShowDiv('registration2');" class="card-link"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</a>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  api: 'https://k12portal.campusconnect.ai/api/k12-registration/'
+
 };

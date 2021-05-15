@@ -1,0 +1,19 @@
+$mediumScreen: 768px;
+
+.registration1 {
+    @media screen and (min-width: $mediumScreen) {
+        margin: 0% 0% 0% 57%
+    }
+}
+
+.card.registration1 {
+    min-width: 48%;
+}
+
+.registration-box {
+    margin-top: 10%;
+}
+
+.text-danger{
+    min-inline-size: -webkit-fill-available;
+}

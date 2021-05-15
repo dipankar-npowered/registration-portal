@@ -1,0 +1,5 @@
+<div style="text-align: center;">
+    <h5 *ngIf="errormessage" class="text-dander">{{errormessage}}</h5>
+    <h5 *ngIf="successmessage" class="text-success">{{successmessage}}</h5>
+    <a *ngIf="successmessage" [routerLink]="['/']" routerLinkActive="router-link-active" >Click here to login</a>
+</div>

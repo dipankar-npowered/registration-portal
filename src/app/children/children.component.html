@@ -1,0 +1,71 @@
+
+<form *ngIf="childrenForm" [formGroup]="childrenForm" (ngSubmit)="onSubmit()" style="width: 100%;">
+    <div class="row">
+            <div style="padding: 2%; width: -webkit-fill-available;">
+                <!-- <div class="row" *ngFor="let ChildGroup of getFormArrayControls(childrenForm, 'children'); let i = index;" [formGroup]="ChildGroup"> -->
+                <div class="row" style="display: contents;" *ngFor="let ChildGroup of getFormArrayControls(childrenForm, 'children'); let i = index;"  [formGroup]="getFormGroupAt(childrenForm.controls.children, i)">
+                    <strong>Child {{i+1}}:</strong>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Full Name</span>
+                                </div>
+                                <input type="text" class="form-control"  formControlName="fullname" placeholder="John Smith" aria-label="Username" aria-describedby="basic-addon1">
+                                <span class="text-danger" *ngIf="ChildGroup.get('fullname')?.errors && ChildGroup.get('fullname')?.touched">Please enter your child name</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Date of Birth</span>
+                                </div>
+                                <input type="date" class="form-control" formControlName="dob" placeholder="10" aria-label="dob" aria-describedby="basic-addon1">
+                                <span class="text-danger" *ngIf="ChildGroup.get('dob')?.errors && ChildGroup.get('dob')?.touched">Please enter your child date of birth</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Gender</span>
+                                </div>
+                                <select class="form-control" formControlName="gender">
+                                    <option value="">Select</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                                <span class="text-danger" *ngIf="ChildGroup.get('gender')?.errors && ChildGroup.get('gender')?.touched">Please select your child gender</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">School</span>
+                                </div>
+                                <select class="form-control" formControlName="schoolid">
+                                    <option value="">Select</option>
+                                    <option *ngFor="let schoold of districtSchools" [value]="schoold['School Code']">{{schoold['School Name']}}</option>
+                                </select>
+                                <span class="text-danger" *ngIf="ChildGroup.get('schoolid')?.errors && ChildGroup.get('schoolid')?.touched">Please select your child's school</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Student ID</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="studentid" placeholder="2423432" aria-label="student id" aria-describedby="basic-addon1">
+                                <span class="text-danger" *ngIf="ChildGroup.get('studentid')?.errors && ChildGroup.get('studentid')?.touched">Please enter your child's student id</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-danger" *ngIf="getFormArrayControls(childrenForm, 'children').length !== (i+1)" (click)="removeChild(i)">Remove Child</button>
+                                <button class="btn btn-primary" *ngIf="getFormArrayControls(childrenForm, 'children').length === (i+1)" (click)="addChild()">Add Child</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <strong class="text-success" *ngIf="successmessage">{{successmessage}}</strong>
+                <strong class="text-danger" *ngIf="errormessage">{{errormessage}}</strong>
+            </div>
+    </div>
+    <button class="btn btn-success" style="float: right;" type="submit">Save</button>
+</form>
+
+
+

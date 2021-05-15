@@ -1,0 +1,32 @@
+<div class="row registration-box">
+    <div class="card registration1" [@slideInOut]="registration1">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="card-body">
+            <div>
+                <span class="card-title" style="font-size: 22px; font-weight: bold;">Sign In</span>
+                <span><a [routerLink]="['/registration']" routerLinkActive="router-link-active"  style="float: right; font-size: 12px;">Create Account</a></span>
+            </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Email Address</span>
+            </div>
+            <input type="text" class="form-control" formControlName="email" placeholder="example@domain.com" aria-label="email id" aria-describedby="basic-addon1">
+            <span class="text-danger" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">Please enter your valid email id</span>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Password</span>
+            </div>
+            <input type="password" class="form-control" formControlName="password" placeholder="*********" aria-label="password" aria-describedby="basic-addon1">
+                <span class="text-danger" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">Please enter a valid password</span>
+          </div>
+          <div style="float: right;">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Signin</button>
+          </div>
+          <div>
+            <span class="text-danger" *ngIf="errorMessage">{{errorMessage}}</span>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
