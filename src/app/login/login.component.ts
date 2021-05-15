@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
       } else {
         this.errorMessage = 'Invalid email address or password'
       }
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
 }
